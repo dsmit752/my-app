@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AssetService } from './asset.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'my-app';
+  title = 'Asset Management';
+
+  constructor(private _myService: AssetService) { }
+  
 }
+

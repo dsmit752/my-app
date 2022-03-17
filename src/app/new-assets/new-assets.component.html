@@ -1,0 +1,41 @@
+<div class="text-center">
+    <h1>Asset Management Component - Add Asset.</h1>
+      <h3>This page contains a form that users can utilize to add assets to the database.</h3>
+  </div>
+  
+  <br>
+  <br>
+  
+<div class="divform">
+    <h3>{{mode}} Asset Form</h3>
+    <br>
+    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+        <mat-form-field>
+            <input matInput placeholder="Name" id="itemName" [(ngModel)]="itemName" name="itemName" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Model" id="itemModel" [(ngModel)]="itemModel" name="itemModel" required>
+        </mat-form-field>
+<br>
+        <mat-form-field>
+            <input matInput placeholder="Description" id="itemDes" [(ngModel)]="itemDes" name="itemDes">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Serial No." id="itemSerial" [(ngModel)]="itemSerial" name="itemSerial">
+        </mat-form-field>
+<br>
+        <mat-form-field>
+            <input matInput placeholder="Cost (USD)" id="itemCost" [(ngModel)]="itemCost" name="itemCost">
+        </mat-form-field>
+
+        <mat-form-field>
+        <input matInput placeholder="Quantity" id="itemQty" [(ngModel)]="itemQty" name="itemQty">
+        </mat-form-field>
+<br> <!--mat-form-field-->
+    <p>
+    <button type="submit" mat-raised-button color="warn">Submit</button>
+    </p>
+    </form>
+    </div>

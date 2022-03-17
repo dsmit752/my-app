@@ -1,0 +1,171 @@
+<!-- INTRODUCTION BODY 
+  <div>
+  <div class="text-center">
+      <h1>Welcome to Asset Management Component!
+        Keep track of all assets being utilized and log new assets to enhance
+        the capabilities of your organization.</h1>
+  </div>
+</div> 
+-->
+
+<div class="text-center">
+  <h1>Asset Management Component - Asset List.</h1>
+    <h3>This page displays a list of all assets that have been added in the database.</h3>
+</div>
+<br>
+
+<br>
+<div>
+  <!-- routerLink="/detail/{{capstone.id}}"  <table *ngFor="let capstone of capstone let i = index"> --binds with == products.component.ts ( products = PRODUCTS)-->
+    <table *ngFor="let capstone of capstone let i = index">
+        <span class="listassets">{{capstone.id}}, {{capstone.name}}</span> 
+      <tr>
+        <th>Internal ID</th>
+        <th>Name</th>
+        <th>Model</th>
+        <th>Description</th>
+        <th>Serial No.</th>
+        <th>Cost (USD)</th>
+        <th>Qty</th>
+        <th>Action</th>
+      </tr>
+      <tr>
+        <td>{{capstone._id}}</td>
+        <td>{{capstone.itemName}}</td>
+        <td>{{capstone.itemModel}}</td>
+        <td>{{capstone.itemDes}}</td>
+        <td>{{capstone.itemSerial}}</td>
+        <td>{{capstone.itemCost}}</td>
+        <td>{{capstone.itemQty}}</td>
+        <td><button id="b1" mat-button color="warn" (click)="onDelete(capstone._id)">DELETE</button>
+        <br><button mat-raised-button color="primary" id="b1" [routerLink]="['/editAsset', capstone._id]">UPDATE</button></td>
+      </tr>
+    </table>
+
+
+  <!--
+
+    itemName: string, itemModel: string, itemDes: String, itemSerial: string, itemCost: string, itemQty: string
+
+  <div>
+      <ul *ngFor ="let capstone1 of capstone let i = index">
+          <li> <b>Asset ID:</b>  {{capstone1._id}} (index {{i}}) <button (click)="onDelete(capstone1._id)">DELETE</button> <button [routerLink]="['/editAsset', capstone1.id]">UPDATE</button> <br> <b>Name:</b> {{capstone1.itemName}} <br> <b>Model:</b> {{capstone1.itemModel}} <br> <b>Description:</b> {{capstone1.itemDes}} <br> 
+          <b>Serial No:</b> {{capstone1.itemSerial}} <br> <b>Cost:</b> {{capstone1.itemCost}} <br> <b>Quantity:</b> {{capstone1.itemQty}}</li>
+      </ul>
+    </div>
+  
+    <hr>
+    <div>
+    
+    
+    <hr>
+    <br>
+      <ul *ngFor = "let capstone1 of capstones let i = index"> 
+          <li> {{capstone1._id}}: {{capstone1.itemName}} {{capstone1.itemModel}} (index{{i}}) </li> 
+            <li> <button mat-button color="warn" (click)="onDelete(capstone1._id)">DELETE</button> </li> 
+             <li><button mat-button color="accent" [routerLink]="['/editCapstone', capstone1._id]">UPDATE</button>
+          </li>
+         
+      </ul>
+    \
+  </div>
+
+
+
+
+--
+<div>
+<table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Model</th>
+      <th>Description</th>
+      <th>Serial No.</th>
+      <th>Cost (USD)</th>
+      <th>Qty</th>
+      <th>Action</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Lenovo Chromebook</td>
+      <td>MT1</td>
+      <td>Security Integrated</td>
+      <td>CRB4567</td>
+      <td>150</td>
+      <td>50</td>
+      <td><button id="b1" mat-button color="warn" (click)="onDelete(capstone._id)">DELETE</button> <button mat-raised-button color="accent" id="b2" [routerLink]="['/editAsset', capstone._id]">UPDATE</button></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Lenovo Thinkpad</td>
+      <td>X1</td>
+      <td>Security Integrated; Dual Fan</td>
+      <td>THP1237</td>
+      <td>1500</td>
+      <td>20</td>
+      <td><button id="b1" mat-button color="warn" (click)="onDelete(capstone)">DELETE</button> <button mat-raised-button color="accent" id="b2" [routerLink]="['/editAsset', capstone.id]">UPDATE</button></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Zebra Printer</td>
+      <td>ZT600</td>
+      <td>RFID Printer; Thermal Transfer</td>
+      <td>ZPR2345</td>
+      <td>2500</td>
+      <td>5</td>
+      <td><button id="b1" mat-button color="warn" (click)="onDelete(capstone.id)">DELETE</button> <button mat-raised-button color="accent" id="b2" [routerLink]="['/editAsset', capstone.id]">UPDATE</button></td>
+    </tr>
+
+    --mat-raised-button color="warn" id="b1"--
+    
+    <tr>
+      <td>4</td>
+      <td>Cisco Network Router</td>
+      <td>A901</td>
+      <td>Low Power Consumption</td>
+      <td>CIS6548</td>
+      <td>800</td>
+      <td>20</td>
+      <td><button id="b1" mat-button color="warn" (click)="onDelete(capstone.id)">DELETE</button> <button mat-raised-button color="accent" id="b2" [routerLink]="['/editAsset', capstone.id]">UPDATE</button></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>MacBook Air 13-inch</td>
+      <td>AM13</td>
+      <td>New</td>
+      <td>AMB4567</td>
+      <td>999</td>
+      <td>10</td>
+      <td><button id="b1" mat-button color="warn" (click)="onDelete(capstone.id)">DELETE</button> <button mat-raised-button color="accent" id="b2" [routerLink]="['/editAsset', capstone.id]">UPDATE</button></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Dell Inspiron</td>
+      <td>DI5</td>
+      <td>8GB Memory</td>
+      <td>DEL9345</td>
+      <td>500</td>
+      <td>15</td>
+      <td><button id="b1" mat-button color="warn" (click)="onDelete(capstone.id)">DELETE</button> <button mat-raised-button color="accent" id="b2" [routerLink]="['/editAsset', capstone.id]">UPDATE</button></td>
+    </tr>
+  </table>
+</div>
+
+
+<div>
+    <ul *ngFor ="let capstone of capstone let i = index">
+        <li> {{capstone._id}}: {{capstone.itemName}}
+                {{capstone.itemModel}}
+                {{capstone.itemDes}}
+                {{capstone.itemSerial}}
+                {{capstone.itemCost}}
+                {{capstone.itemQty}}
+                (index {{i}})
+            <button mat-button color="warn" (click)="onDelete(capstone._id)">DELETE</button>
+            <button mat-button color="accent" [routerLink]="['/editcapstone', capstone._id]">UPDATE</button>
+        </li>
+    </ul>
+</div>
+<br>
+-->

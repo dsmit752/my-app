@@ -1,0 +1,180 @@
+
+
+<h2>My Products</h2>
+<ul class="products">
+  <table *ngFor="let products of products"> <!--binds with ==> products.component.ts ( products = PRODUCTS)-->
+    <a routerLink="/detail/{{products.id}}">
+        <span class="badge">{{products.id}}, {{products.name}}</span> 
+    </a>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Model</th>
+        <th>Description</th>
+        <th>Serial No.</th>
+        <th>Cost (USD)</th>
+        <th>Qty</th>
+        <th>Action</th>
+        <th>Select</th>
+    </tr>
+    <tr>
+        
+        <td><span>{{products.id}}</span></td>
+        <td><span>{{products.name}}</span></td>
+        <td><span>{{products.model}}</span></td>
+        <td><span>{{products.description}}</span></td>
+        <td><span>{{products.serial}}</span></td>
+        <td><span>{{products.cost}}</span></td>
+        <td><span>{{products.qty}}</span></td>
+        <td><button>Update</button><button>Delete</button></td>
+        <button [class.selected]="products   === selectedProducts" type = "button" (click)="onSelect(products)">Button
+        <span class = "badge">{{products.id}}</span>
+        <span class = "name">{{products.name}}</span>
+        </button>
+    </tr>
+</table>
+
+
+
+<h2>My Products</h2>
+<ul class="products">
+  <li *ngFor="let product of products">
+    <a routerLink="/detail/{{product.id}}">
+      <span class="badge">{{product.id}}</span> {{product.name}}
+    </a>
+  </li>
+</ul>
+    <!--
+<div *ngIf="selectedProducts">
+    <h2>{{selectedProducts.name | uppercase}} Details</h2>
+    <div>id: {{selectedProducts.id}}</div>
+    <div>
+      <label for="product-name">Product name: </label>
+      <input id="product-name" [(ngModel)]="selectedProducts.name" placeholder="name">
+    </div>
+    </div>
+
+    <app-product-detail [product]="selectedProducts"></app-product-detail>
+-->
+
+
+<!--
+<h2>{{product.name}} Details</h2>
+<div><span>id: </span>{{product.id}}</div>
+<div><span>model: </span>{{product.model}}</div>
+<div><span>description: </span>{{product.description}}</div>
+<div><span>serial: </span>{{product.serial}}</div>
+<div><span>cost: </span>{{product.cost}}</div>
+<div><span>qty: </span>{{product.qty}}</div>
+<hr>
+<br>
+
+<table>
+    <tr>
+      <th>{{product.id}}</th>
+      <th>{{product.name}}</th>
+      <th>{{product.model}}</th>
+      <th>{{product.description}}</th>
+      <th>{{product.serial}}</th>
+      <th>{{product.cost}}</th>
+      <th>{{product.qty}}</th>
+      <th>Action</th>
+    </tr>
+    <tr>
+      <td>
+        <div>
+            <label for="id">ID: </label>
+            <input id="id" [(ngModel)]="product.id" placeholder="name">
+          </div>
+      </td>
+      <td>
+        <div>
+            <label for="name">Name: </label>
+            <input id="name" [(ngModel)]="product.name" placeholder="name">
+          </div>
+      </td>
+      <td>
+        <div>
+            <label for="model">Model: </label>
+            <input id="model" [(ngModel)]="product.model" placeholder="name">
+          </div>
+      </td>
+      <td>
+        <div>
+            <label for="description">Description: </label>
+            <input id="description" [(ngModel)]="product.description" placeholder="name">
+          </div>
+      </td>
+      <td>
+        <div>
+            <label for="serial">Serial: </label>
+            <input id="serial" [(ngModel)]="product.serial" placeholder="name">
+          </div>
+      </td>
+      <td>
+        <div>
+            <label for="cost">Cost: </label>
+            <input id="cost" [(ngModel)]="product.cost" placeholder="name">
+          </div>
+      </td>
+      <td>
+        <div>
+            <label for="qty">Qty: </label>
+            <input id="qty" [(ngModel)]="product.qty" placeholder="name">
+          </div>
+      </td>
+      <td><button>DELETE</button> <button>UPDATE</button></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Lenovo Thinkpad</td>
+      <td>X1</td>
+      <td>Security Integrated; Dual Fan</td>
+      <td>THP1237</td>
+      <td>1500</td>
+      <td>20</td>
+      <td><button>DELETE</button> <button>UPDATE</button></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Zebra Printer</td>
+      <td>ZT600</td>
+      <td>RFID Printer; Thermal Transfer</td>
+      <td>ZPR2345</td>
+      <td>2500</td>
+      <td>5</td>
+      <td><button>Delete</button> <button>UPDATE</button></td>
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>Cisco Network Router</td>
+      <td>A901</td>
+      <td>Low Power Consumption</td>
+      <td>CIS6548</td>
+      <td>800</td>
+      <td>20</td>
+      <td><button>Delete</button> <button>UPDATE</button></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>MacBook Air 13-inch</td>
+      <td>AM13</td>
+      <td>New</td>
+      <td>AMB4567</td>
+      <td>999</td>
+      <td>10</td>
+      <td><button>Delete</button> <button>Update</button></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Dell Inspiron</td>
+      <td>DI5</td>
+      <td>8GB Memory</td>
+      <td>DEL9345</td>
+      <td>500</td>
+      <td>15</td>
+      <td><button>Delete</button> <button>UPDATE</button></td>
+    </tr>
+  </table>
+-->
