@@ -2,11 +2,16 @@ table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
-    
+    /**/
+    bottom: auto;
+  
   }
 
+
+
 th{
-  color: white;
+  color: #1e5d88;
+  background-color: white;
 }
   
   td, th {
@@ -17,13 +22,13 @@ th{
     white-space:nowrap;
   }
   
-  tr:nth-child(even) {
+  tr:nth-child(odd) {
     background-color: #1e5d88;
   }
 
-  #b1{
+  .b1{
     padding: 1px;
-    margin:5px
+    margin:5px;
   }
 
   #b2{
@@ -62,4 +67,14 @@ html, body {
     margin: 0px;
     padding: 0px;
     overflow-x: hidden;
+}
+
+.h1{
+  text-align: center;
+  height: 400px;
+  width: 800px;
+  background: red;
+  line-height: 400px;
+  text-align: center;
+
 }

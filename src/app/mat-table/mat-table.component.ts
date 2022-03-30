@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AssetService } from '../asset.service';
 
 export interface PeriodicElement {
+
   name: string;
   position: number;
   weight: number;

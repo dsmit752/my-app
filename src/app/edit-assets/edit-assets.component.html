@@ -1,1 +1,64 @@
-<p>edit-assets works!</p>
+<div class="container"> 
+    <!--
+        <h2>Available Doctors</h2>
+    <ul class="doctors">
+      <li *ngFor="let doctor of doctors"
+        [class.selected]="doctor === selectedDoctor"
+        (click)="onSelect(doctor)">
+        <span class="badge">{{doctor.firstName}}</span> {{doctor.lastName}}
+      </li>
+    </ul>
+    <div *ngIf="selectedDoctor">
+      <div><span>Last Name: </span>{{selectedDoctor.lastName}}</div>
+      <div>
+        <label for="firstName">Dr.: </label>
+        <input id="firstName" [(ngModel)]="selectedDoctor.lastName" placeholder="firstName">
+      </div>
+      <div [hidden]="submitted">-->
+    <h2>Asset Form</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="assetForm">
+        <label for="itemName"><b>Name: <br></b></label>
+        <input id="itemName" type="text" formControlName="itemName" required>
+    <br>
+        <label for="itemModel"><b>Model: <br></b></label>
+        <input id="itemModel" type="text" formControlName="itemModel" required>
+    <br>
+        <label for="itemDes"><b>Description: <br></b></label>
+        <input id="itemDes" type="text" formControlName="itemDes" required>
+    <br>
+        <label for="itemSerial"><b>Serial: <br></b></label>
+        <input id="itemSerial" type="text" formControlName="itemSerial">
+    <br>
+        <label for="itemCost"><b>Cost: <br></b></label>
+        <input id="itemCost" type="text" formControlName="itemCost">
+    <br>
+        <label for="itemQty"><b>Quantity: <br></b></label>
+        <input id="itemQty" type="text" formControlName="itemQty">
+    <hr>
+    <br>
+   
+    <p>Complete Form to Enable this Button</p>
+    <button type="submit" [disabled]="!assetForm.valid">Submit</button>
+     
+      </form>
+    
+    <br>
+    </div>
+
+
+
+    
+      <!--<p>Doctor Form Value: {{ doctorForm.value | json }}</p>
+      <p>Form Status: {{ doctorForm.status }}</p>
+    
+      <div formArrayName="aliases">
+        <h2>Add Patients</h2>
+        <button (click)="addItem()" type="button">+ Add another Patient</button>
+        <div *ngFor="let alias of aliases.controls; let i=index">
+          <-- The repeated alias template --
+          <label for="alias-{{ i }}">Patients (fName / lName):</label>
+          <input id="alias-{{ i }}" type="text" [formControlName]="i">
+        </div>
+      </div>
+    
+    -->

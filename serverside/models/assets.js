@@ -16,4 +16,4 @@ const assetSchema = new mongoose.Schema({
 //Parameters: (model_name, schema_to_use, collection_name)
 //module.exports is used to allow external access to the model  
 //note capital S in the collection name
-module.exports = mongoose.model('Capstone', assetSchema, 'assets');
+module.exports = mongoose.model('Item', assetSchema, 'assets');

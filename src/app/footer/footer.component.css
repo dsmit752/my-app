@@ -1,0 +1,53 @@
+.footer {
+    /*padding: 20px;
+    background: #673ab7;
+    position: absolute;
+    margin: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;*/
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    background: #673ab7;
+    
+  }
+  
+    h5 {
+      align-content: center;
+      color: white;
+      font-size: medium;
+      margin-left: 40%;
+    }
+    a {
+      align-content: center;
+      color: white;
+      font-size: medium;
+      margin-left: 40%;
+    }
+
+
+/*
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    line-height: 1.25;
+}
+
+
+/* unvisited link *
+a:link {
+    color: white;
+}
+
+/* mouse over link *
+a:hover {
+   color: #55ad7a;
+  }
+  */

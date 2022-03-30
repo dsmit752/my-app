@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetService } from '../asset.service';
-
+import { NewAssetsComponent } from '../new-assets/new-assets.component';
 import { MatButton } from '@angular/material/button';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -13,26 +13,28 @@ import { MatButtonModule } from '@angular/material/button';
 export class ListAssetsComponent implements OnInit {
 
 //declare variable to hold response and make it public to be accessible from components.html 
-  public capstone: any;
+  public item: any;
   
   //initialize the call using AssetService 
   constructor(private _myService: AssetService) { }
   ngOnInit() {
-      this.getCapstones();
+      this.getItems();
   }
   //method called OnInit
-  getCapstones() {
-      console.log(this.capstone)
-      this._myService.getCapstones().subscribe(
-        data => { this.capstone = data},
-          //read data and assign to public variable assets
+  getItems() {
+      console.log(this.item)
+      this._myService.getItems().subscribe(
+         //read data and assign to public variable assets
+        data => { this.item = data},
+         
           err => console.error(err),
           () => console.log('finished loading')
       );
   }
 
-  onDelete(capstoneId: string) {
-    this._myService.deleteCapstone(capstoneId);
+  
+  onDelete(itemId: string) {
+    this._myService.deleteItem(itemId);
 }
 
 }

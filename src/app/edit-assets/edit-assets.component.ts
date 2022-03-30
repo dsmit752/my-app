@@ -23,8 +23,8 @@ export class EditAssetsComponent implements OnInit {
   });
 
   public mode = 'Add'; //default mode
-  private id: any; //Capstone ID
-  private capstone: any;  
+  private id: any; //item ID
+  private item: any;  
 
   constructor(private fb: FormBuilder, private _myService: AssetService, private router:Router, public route: ActivatedRoute) { }
 
@@ -36,18 +36,18 @@ export class EditAssetsComponent implements OnInit {
             this.id = paramMap.get('_id');
 
            
-            this._myService.getCapstone(this.id).subscribe(
+            this._myService.getItem(this.id).subscribe(
                 data => { 
-                    //read data and assign to private variable capstone
-                    this.capstone = data;
+                    //read data and assign to private variable item
+                    this.item = data;
                     //populate the contactName and  on the page
                     //notice that this is done through the two-way bindings
-                    this.assetForm.patchValue({itemName: this.capstone.itemName})
-                    this.assetForm.patchValue({itemModel: this.capstone.itemModel})
-                    this.assetForm.patchValue({itemDes: this.capstone.itemDes})
-                    this.assetForm.patchValue({itemSerial: this.capstone.itemSerial})
-                    this.assetForm.patchValue({itemCost: this.capstone.itemCost})
-                    this.assetForm.patchValue({itemQty: this.capstone.itemQty})
+                    this.assetForm.patchValue({itemName: this.item.itemName})
+                    this.assetForm.patchValue({itemModel: this.item.itemModel})
+                    this.assetForm.patchValue({itemDes: this.item.itemDes})
+                    this.assetForm.patchValue({itemSerial: this.item.itemSerial})
+                    this.assetForm.patchValue({itemCost: this.item.itemCost})
+                    this.assetForm.patchValue({itemQty: this.item.itemQty})
                 },
                 err => console.error(err),
                 () => console.log('finished loading')
@@ -66,10 +66,10 @@ export class EditAssetsComponent implements OnInit {
     // TODO: Use EventEmitter with form value
     console.log("You submitted: " + this.assetForm.get("itemName").value, + " " + this.assetForm.get("itemModel").value, + " " + this.assetForm.get("itemDes").value, + " " + this.assetForm.get("itemSerial").value, + " " + this.assetForm.get("itemCost").value, + " " + this.assetForm.get("itemQty").value);
     if (this.mode == 'Add')
-    this._myService.addCapstone(this.assetForm.get("itemName").value, this.assetForm.get("itemModel").value, this.assetForm.get("itemDes").value, this.assetForm.get("itemSerial").value, this.assetForm.get("itemCost").value, this.assetForm.get("itemQty").value);
+    this._myService.addItem(this.assetForm.get("itemName").value, this.assetForm.get("itemModel").value, this.assetForm.get("itemDes").value, this.assetForm.get("itemSerial").value, this.assetForm.get("itemCost").value, this.assetForm.get("itemQty").value);
     if (this.mode == 'Edit')
-    this._myService.updateCapstone(this.id,this.assetForm.get("itemName").value ,this.assetForm.get("itemModel").value ,this.assetForm.get("itemDes").value ,this.assetForm.get("itemSerial").value ,this.assetForm.get("itemCost").value, this.assetForm.get("itemQty").value);
-    this.router.navigate(['/listassets']);
+    this._myService.updateItem(this.id,this.assetForm.get("itemName").value ,this.assetForm.get("itemModel").value ,this.assetForm.get("itemDes").value ,this.assetForm.get("itemSerial").value ,this.assetForm.get("itemCost").value, this.assetForm.get("itemQty").value);
+    this.router.navigate(['/editAssets']);
    
   }
 

@@ -2,14 +2,28 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
-const Capstone = require('./models/assets');
+const Item = require('./models/assets');
+//var MongClient = require('mongodb').MongoClient;
+//var url = "mongodb://localhost:27017/"
 // const Assets = require('./models/assets');
+// 'mongodb://evaugh15:pgrOb7CQ7tRGtUrr@cluster0.ajypq.mongodb.net/devices'
+//mongodb://localhost:27017/devices
 //connect and display the status 
 
-mongoose.connect('mongodb://localhost:27017/devices', { useNewUrlParser: true,  useUnifiedTopology: true })    
+mongoose.connect('mongodb+srv://evaugh15:pgrOb7CQ7tRGtUrr@cluster0.ajypq.mongodb.net/devices?retryWrites=true&w=majority', { useNewUrlParser: true,  useUnifiedTopology: true })    
     .then(() => { console.log("connected"); })
     .catch(() => { console.log("error connecting"); });
-
+/*
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("mydb");
+        var myobj = [];
+        dbo.collection("devices").insertMany(myobj, function(err, res) {
+          if (err) throw err;
+          console.log("Number of documents inserted: " + res.insertedCount);
+          db.close();
+        });
+      });*/
     //const baseAPI = '/api/v1/';
 
 //specify which domains can make requests and which methods are allowed
@@ -30,8 +44,8 @@ app.use(bodyParser.json())
 //by adding /devices, we tell the server that this method will be called every time http://localhost:8000/devices is requested. 
 app.get('/devices', (req, res, next) => {
     //we will add an array named appointment to pretend that we received this data from the database
-    //call mongoose method find (MongoDB db.Students.find())
-    Capstone.find() 
+    //call mongoose method find (MongoDB db.Assets.find())
+    Item.find() 
         //if data is returned, send data as a response 
         .then(data => res.status(200).json(data))
         //if error, send internal server error
@@ -43,7 +57,7 @@ app.get('/devices', (req, res, next) => {
     //find a asset based on the id
 app.get('/devices/:_id', (req, res, next) => {
     //call mongoose method findOne (MongoDB db.Assets.findOne())
-    Capstone.findOne({_id: req.params.id}) 
+    Item.findOne({_id: req.params.id}) 
         //if data is returned, send data as a response 
         .then(data => {
             res.status(200).json(data)
@@ -62,7 +76,7 @@ app.put('/devices/:id', (req, res, next) => {
     // check that the parameter id is valid 
     if (mongoose.Types.ObjectId.isValid(req.params.id)) { 
         //find a document and set  new asset names, model, etc. 
-        Capstone.findOneAndUpdate( 
+        Item.findOneAndUpdate( 
             {_id: req.params.id}, 
             {$set:{ 
                 itemName : req.body.itemName, 
@@ -74,9 +88,9 @@ app.put('/devices/:id', (req, res, next) => {
             }}, 
             {new:true} 
         ) 
-        .then((capstone)=> { 
-            if (capstone) { //what was updated 
-                console.log(capstone); 
+        .then((item)=> { 
+            if (item) { //what was updated 
+                console.log(item); 
             } else { 
                 console.log("no data exist for this id"); 
             } 
@@ -96,7 +110,7 @@ app.put('/devices/:id', (req, res, next) => {
 //serve incoming post requests to /assets
 app.post('/devices', (req, res, next) => {
     // create a new student variable and save request’s fields 
-    const capstone = new Capstone({
+    const item = new Item({
         itemName: req.body.itemName,
         itemModel: req.body.itemModel,
         itemDes: req.body.itemDes,
@@ -106,7 +120,7 @@ app.post('/devices', (req, res, next) => {
     });
 
         //send the document to the database 
-        capstone.save()
+        item.save()
         //in case of success
        .then(() => { console.log('Success');})
        //if error
@@ -115,7 +129,7 @@ app.post('/devices', (req, res, next) => {
 
      //:id is a dynamic parameter that will be extracted from the URL
     app.delete("/devices/:id", (req, res, next) => {
-        Capstone.deleteOne({ _id: req.params.id }).then(result => {
+        Item.deleteOne({ _id: req.params.id }).then(result => {
             console.log(result);
             res.status(200).json("Asset Deleted!");
         });
@@ -132,8 +146,8 @@ app.post('/devices', (req, res, next) => {
 //by adding /patients, we tell the server that this method will be called every time http://localhost:8080/assets is requested. 
 app.get('/assets', (req, res, next) => {
     //we will add an array named students to pretend that we received this data from the database
-    //call mongoose method find (MongoDB db.Capstone.find())
-    Capstone.find()
+    //call mongoose method find (MongoDB db.item.find())
+    item.find()
         //if data is returned, send data as a response 
         .then(data => res.status(200).json(data))
         //if error, send internal server error
@@ -145,8 +159,8 @@ app.get('/assets', (req, res, next) => {
 });
 //find a asset based on the id
 app.get('/assets/:_id', (req, res, next) => {
-    //call mongoose method findOne (MongoDB db.Capstone.findOne())
-    Capstone.findOne({_id: req.params.id})
+    //call mongoose method findOne (MongoDB db.item.findOne())
+    item.findOne({_id: req.params.id})
         //if data is returned, send data as a response 
         .then(data => {
             res.status(200).json(data)
@@ -172,7 +186,7 @@ app.put('/assets/:id', (req, res, next) => {
         Qty: req.body.Qty
     });
     //send the document to the database 
-    Capstone.save()
+    item.save()
         //in case of success
         .then(() => { console.log('Success'); })
         //if error
@@ -180,7 +194,7 @@ app.put('/assets/:id', (req, res, next) => {
 
     //:id is a dynamic parameter that will be extracted from the URL
     app.delete("/assets/:id", (req, res, next) => {
-        Capstone.deleteOne({ _id: req.params.id }).then(result => {
+        item.deleteOne({ _id: req.params.id }).then(result => {
             console.log(result);
             res.status(200).json("Deleted!");
         });

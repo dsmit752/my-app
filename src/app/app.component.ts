@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
 import { AssetService } from './asset.service';
 
 @Component({
@@ -7,9 +9,14 @@ import { AssetService } from './asset.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Asset Management';
+  title = 'CMS APPLICATION';
 
-  constructor(private _myService: AssetService) { }
-  
+  constructor(private matDialog: MatDialog) {
+
+  }
+
+  onOpenDialog(){
+    this.matDialog.open(DialogComponent);
+  }
 }
 

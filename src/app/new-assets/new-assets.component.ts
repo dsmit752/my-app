@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-assets.component.css']
 })
 export class NewAssetsComponent implements OnInit {
-
+  
+//  constructor (private user: AssetService, private router: Router) { }
+ 
   @Input() itemName: string;
   @Input() itemModel: string;
   @Input() itemDes: string;
@@ -19,7 +21,7 @@ export class NewAssetsComponent implements OnInit {
   @Input() itemCost: string;
   @Input() itemQty: string;
 
-  public mode = 'Add'; //default mode
+  public mode = 'Add'; //default;
   private id: any; //asset ID
   private asset: any;
 
@@ -30,11 +32,11 @@ export class NewAssetsComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('_id')) {
-        this.mode = 'Edit'; /*request had a parameter _id */
+        this.mode = 'Edit'; /*request had a parameter _id*/
         this.id = paramMap.get('_id');
 
         //request asset info based on the id
-      this._myService.getCapstone(this.id).subscribe(
+      this._myService.getItem(this.id).subscribe(
           data => {
             //read data and assign to private variable asset
             this.asset = data;
@@ -65,14 +67,14 @@ export class NewAssetsComponent implements OnInit {
       + " " + this.itemCost + " " + this.itemQty);
 
     if (this.mode == 'Add')
-      this._myService.addCapstone(this.itemName ,this.itemModel, this.itemDes, this.itemSerial, this.itemCost,
+      this._myService.addItem(this.itemName ,this.itemModel, this.itemDes, this.itemSerial, this.itemCost,
       this.itemQty);
 
     if (this.mode == 'Edit')
-      this._myService.updateCapstone(this.id, this.itemName, this.itemModel, this.itemDes, this.itemSerial, this.itemCost,
+      this._myService.updateItem(this.id, this.itemName, this.itemModel, this.itemDes, this.itemSerial, this.itemCost,
         this.itemQty);
-    this.router.navigate(['/listAssets']);
+    this.router.navigate(['/listassets']);
   }
 
 
-}
+} 
