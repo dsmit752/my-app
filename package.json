@@ -9,7 +9,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "heroku-postbuild": "cd ../my-app && npm install",
+    "heroku-postbuild": "cd ./my-app && npm install",
     "test": "ng test"
   },
   "private": true,
