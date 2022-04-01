@@ -30,7 +30,7 @@ const routes: Routes = [
   //{ path: 'detail/:id', component: ProductDetailComponent },
   { path: 'assets', component: NewAssetsComponent },
   { path: 'listassets', component: ListAssetsComponent },
-  { path: 'editAssets', component: NewAssetsComponent },
+  { path: 'editAssets/:_id', component: NewAssetsComponent },
 
   //User Module Component Paths
   { path: 'create-user', component: AddUserComponent },

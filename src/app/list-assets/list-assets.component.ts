@@ -31,7 +31,6 @@ export class ListAssetsComponent implements OnInit {
           () => console.log('finished loading')
       );
   }
-
   
   onDelete(itemId: string) {
     this._myService.deleteItem(itemId);
