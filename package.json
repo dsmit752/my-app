@@ -15,6 +15,7 @@
   "dependencies": {
     "@angular/animations": "~13.2.0",
     "express":"*",
+    "body-parser":"*",
     "@angular/cdk": "^13.2.6",
     "@angular/common": "~13.2.0",
     "@angular/compiler": "~13.2.0",
