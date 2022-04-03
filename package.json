@@ -6,7 +6,6 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "start": "node webserver.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
