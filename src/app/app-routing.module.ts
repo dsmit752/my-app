@@ -21,7 +21,7 @@ const routes: Routes = [
   /*{ path: 'products', component: ProductsComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },*/
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '/', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginFormComponent}, //login path
   { path: 'home', component: HomeComponent },
   { path: 'signup', component: SignupFormComponent}, //signup path
