@@ -57,7 +57,7 @@ app.get('/devices', (req, res, next) => {
   //Home Route
   app.get("/", function(req, res) {
     
-    res.render("home");
+    res.send("home");
   };
     
     //find a asset based on the id
