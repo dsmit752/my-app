@@ -1,11 +1,33 @@
-.footer {
-    /*padding: 20px;
+footer {
+  padding: 10px;
+  background: #673ab7;
+  position: absolute;
+  margin: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+  h5 {
+    align-content: center;
+    color: white;
+    font-size: medium;
+    margin-left: 40%;
+  }
+  a {
+    align-content: center;
+    color: white;
+    font-size: medium;
+    margin-left: 40%;
+  }
+
+/*.footer {
+    padding: 20px;
     background: #673ab7;
     position: absolute;
     margin: 0;
     bottom: 0;
     width: 100%;
-    text-align: center;*/
+    text-align: center;
     position: fixed;
     left: 0;
     bottom: 0;

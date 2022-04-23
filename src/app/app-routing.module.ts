@@ -11,10 +11,10 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { AddUserComponent } from './add-user/add-user.component';
-import { DeleteUserComponent } from './delete-user/delete-user.component';
+//import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { ListUsersComponent } from './list-users/list-users.component';
-import { ViewUserComponent } from './view-user/view-user.component';
+//import { ViewUserComponent } from './view-user/view-user.component';
 
 
 const routes: Routes = [
@@ -34,10 +34,10 @@ const routes: Routes = [
 
   //User Module Component Paths
   { path: 'create-user', component: AddUserComponent },
-  { path: 'view-user/:id', component: ViewUserComponent },
+  //{ path: 'view-user/:id', component: ViewUserComponent },
   { path: 'list-users', component: ListUsersComponent },
-  { path: 'delete-user/:id', component: DeleteUserComponent },
-  { path: 'edit-user/:id', component: EditUserComponent },
+ // { path: 'delete-user/:id', component: DeleteUserComponent },
+  { path: 'edit-user/:_id', component: AddUserComponent },
 
   { path: '**', component: NotFoundComponent }
 ];

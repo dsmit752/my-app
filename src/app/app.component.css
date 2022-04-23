@@ -2,6 +2,10 @@
   flex: 1 1 auto;
 }
 
+.fixed-header {
+  position:relative;
+}
+
 
 /* AppComponent's private CSS styles *
 /*h1 {

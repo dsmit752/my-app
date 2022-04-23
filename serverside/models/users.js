@@ -4,11 +4,12 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
 
     Name:  { type: String, required: true},
-    userTitle:  { type: String, required: true},
-    userEmail: {type: String, required: true }, 
-    userPhone: { type: String }, 
-    userName: { type: String }, 
     userDept: { type: String },
+    userEmail: {type: String, required: true }, 
+    userName: { type: String },
+    userPhone: { type: String },
+    userTitle:  { type: String, required: true},
+     
     //Uses http.post() to post data 
 });
 

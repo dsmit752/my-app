@@ -8,17 +8,19 @@
 </div> 
 -->
 <br>
-<div class="text-center">
-  <h1>Asset Management Component - Asset List.</h1>
+<div>
+  <h1>Asset List.</h1>
     <h3>This page displays a list of all assets that have been added in the database.</h3>
 </div>
 <br>
-<button><a mat-raised-button color="warn" routerLink="/assets">+ Add Asset</a></button> <br>
-<div>
+<button mat-raised-button color="warn" routerLink="/assets" class="button-margin">+ Add Asset</button> <br>
+<br>
+
+<div class="table-padding">
   <table>
   <!--routerLink="/detail/{{item.id}}"  <table *ngFor="let item of item let i = index"> --binds with == products.component.ts ( products = PRODUCTS)-->
     <table>
-        <span class="listassets">{{item.id}}, {{item.name}}</span> 
+        <span class="listassets">{{items.id}}, {{items.name}}</span> 
       <tr>
         <th>Internal ID</th>
         <th>Name</th>
@@ -30,7 +32,7 @@
         <th>Action</th>
       </tr>
 
-      <tr *ngFor="let item of item let i = index">
+      <tr *ngFor ="let item of items let i = index">
         <td>{{item._id}}</td> 
         <td>{{item.itemName}}</td>
         <td>{{item.itemModel}}</td>
@@ -38,8 +40,8 @@
         <td>{{item.itemSerial}}</td>
         <td>{{item.itemCost}}</td>
         <td>{{item.itemQty}}</td>
-        <td><button id="b1" mat-button color="warn" (click)="onDelete(item._id)">DELETE</button>
-        <br><button mat-raised-button color="primary" id="b1" [routerLink]="['/editAssets', item._id]">UPDATE</button></td>
+        <td><button id="b1" mat-button color="warn" (click)="onDelete(item._id)"><mat-icon>delete</mat-icon></button>
+        <button mat-button color="primary" id="b1" [routerLink]="['/editAssets', item._id]"><mat-icon>edit</mat-icon></button></td>
       </tr>
     </table>
   </table>

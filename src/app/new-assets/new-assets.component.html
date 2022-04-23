@@ -11,10 +11,10 @@
   <br>
   <br>
   
-<div class="divform">
+<div>
     <h3>{{mode}} Asset Form</h3>
     <br>
-    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+    <form (ngSubmit)="onSubmit()">
         <mat-form-field>
             <input matInput placeholder="Name" id="itemName" [(ngModel)]="itemName" name="itemName" required>
         </mat-form-field>
@@ -28,7 +28,7 @@
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput placeholder="Serial No." id="itemSerial" [(ngModel)]="itemSerial" name="itemSerial">
+            <input matInput placeholder="Serial No." id="itemSerial" [(ngModel)]="itemSerial" name="itemSerial" required>
         </mat-form-field>
 <br>
         <mat-form-field>

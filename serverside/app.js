@@ -3,14 +3,16 @@ const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
 const Item = require('./models/assets');
+const People = require('./models/users');
 //var MongClient = require('mongodb').MongoClient;
 //var url = "mongodb://localhost:27017/"
 // const Assets = require('./models/assets');
-// 'mongodb://evaugh15:pgrOb7CQ7tRGtUrr@cluster0.ajypq.mongodb.net/devices'
-//mongodb://localhost:27017/devices
-//connect and display the status 
+// 'mongodb://evaugh15:pgrOb7CQ7tRGtUrr@cluster0.ajypq.mongodb.net/assets'
+//mongodb://localhost:27017/assets     /evaugh15:abc1234
+//mongodb+srv://evaugh15:pgrOb7CQ7tRGtUrr@cluster0.ajypq.mongodb.net/assets?retryWrites=true&w=majority
 
-mongoose.connect('mongodb+srv://evaugh15:pgrOb7CQ7tRGtUrr@cluster0.ajypq.mongodb.net/devices?retryWrites=true&w=majority', { useNewUrlParser: true,  useUnifiedTopology: true })    
+//connect and display the status 
+mongoose.connect('mongodb+srv://evaugh15:abc1234@cluster0.ajypq.mongodb.net/devices?retryWrites=true&w=majority', { useNewUrlParser: true,  useUnifiedTopology: true })    
     .then(() => { console.log("connected"); })
     .catch(() => { console.log("error connecting"); });
 /*
@@ -18,7 +20,7 @@ mongoose.connect('mongodb+srv://evaugh15:pgrOb7CQ7tRGtUrr@cluster0.ajypq.mongodb
         if (err) throw err;
         var dbo = db.db("mydb");
         var myobj = [];
-        dbo.collection("devices").insertMany(myobj, function(err, res) {
+        dbo.collection("assets").insertMany(myobj, function(err, res) {
           if (err) throw err;
           console.log("Number of documents inserted: " + res.insertedCount);
           db.close();
@@ -41,8 +43,8 @@ app.use(bodyParser.json())
 //app.use(cors())
 
 //in the app.get() method below we add a path for the assets API 
-//by adding /devices, we tell the server that this method will be called every time http://localhost:8000/devices is requested. 
-app.get('/devices', (req, res, next) => {
+//by adding /assets, we tell the server that this method will be called every time http://localhost:8000/assets is requested. 
+app.get('/assets', (req, res, next) => {
     //we will add an array named appointment to pretend that we received this data from the database
     //call mongoose method find (MongoDB db.Assets.find())
     Item.find() 
@@ -55,7 +57,7 @@ app.get('/devices', (req, res, next) => {
     });
 
     //find a asset based on the id
-app.get('/devices/:_id', (req, res, next) => {
+app.get('/assets/:_id', (req, res, next) => {
     //call mongoose method findOne (MongoDB db.Assets.findOne())
     Item.findOne({_id: req.params.id}) 
         //if data is returned, send data as a response 
@@ -71,7 +73,7 @@ app.get('/devices/:_id', (req, res, next) => {
 });
 
 //serve incoming put requests to /students 
-app.put('/devices/:id', (req, res, next) => { 
+app.put('/assets/:id', (req, res, next) => { 
     console.log("id: " + req.params.id) 
     // check that the parameter id is valid 
     if (mongoose.Types.ObjectId.isValid(req.params.id)) { 
@@ -108,7 +110,7 @@ app.put('/devices/:id', (req, res, next) => {
 });
 
 //serve incoming post requests to /assets
-app.post('/devices', (req, res, next) => {
+app.post('/assets', (req, res, next) => {
     // create a new student variable and save request’s fields 
     const item = new Item({
         itemName: req.body.itemName,
@@ -128,7 +130,7 @@ app.post('/devices', (req, res, next) => {
 });
 
      //:id is a dynamic parameter that will be extracted from the URL
-    app.delete("/devices/:id", (req, res, next) => {
+    app.delete("/assets/:id", (req, res, next) => {
         Item.deleteOne({ _id: req.params.id }).then(result => {
             console.log(result);
             res.status(200).json("Asset Deleted!");
@@ -136,6 +138,96 @@ app.post('/devices', (req, res, next) => {
     });
     
 
+    app.get('/users', (req, res, next) => {
+        //we will add an array named students to pretend that we received this data from the database
+        People.find() 
+        //if data is returned, send data as a response 
+        .then(data => res.status(200).json(data))
+        //if error, send internal server error
+        .catch(err => {
+        console.log('Error: ${err}');
+        res.status(500).json(err);
+    });
+    
+    //find a student based on the id
+    app.get('/users/:_id', (req, res, next) => {
+        //call mongoose method findOne (MongoDB db.Students.findOne())
+        People.findOne({_id: req.params.id}) 
+            //if data is returned, send data as a response 
+            .then(data => {
+                res.status(200).json(data)
+                console.log(data);
+            })
+            //if error, send internal server error
+            .catch(err => {
+            console.log('Error: ${err}');
+            res.status(500).json(err);
+        });
+    });
+        //serve incoming put requests to /students 
+        app.put('/users/:id', (req, res, next) => { 
+            console.log("id: " + req.params.id) 
+            // check that the parameter id is valid 
+            if (mongoose.Types.ObjectId.isValid(req.params.id)) { 
+                //find a document and set new first and last names 
+                People.findOneAndUpdate( 
+                    {_id: req.params.id}, 
+                    {$set:{ 
+                        Name: req.body.Name, 
+                        userDept: req.body.userDept,
+                        userEmail: req.body.userEmail,
+                        userName: req.body.userName,
+                        userPhone: req.body.userPhone,
+                        userTitle: req.body.userTitle
+                    }}, 
+                    {new:true} 
+                ) 
+                .then((people) => { 
+                    if (people) { //what was updated 
+                        console.log(people); 
+                    } else { 
+                        console.log("no data exist for this id"); 
+                    } 
+                }) 
+                .catch((err) => { 
+                    console.log(err); 
+                }); 
+            } else { 
+                console.log("please provide correct id"); 
+            } 
+    });
+    
+    
+    });
+    
+    //serve incoming post requests to /students
+    app.post('/users', (req, res, next) => {
+        
+        // create a new doctor variable and save requestâs fields 
+    const people = new People({
+        Name: req.body.Name, 
+        userDept: req.body.userDept,
+        userEmail: req.body.userEmail,
+        userName: req.body.userName,
+        userPhone: req.body.userPhone,
+        userTitle: req.body.userTitle
+});
+    
+    //send the document to the database 
+    people.save()
+        //in case of success
+        .then(() => { console.log('Success');})
+        //if error
+        .catch(err => {console.log('Error:' + err);});
+                        
+    });
+        //:id is a dynamic parameter that will be extracted from the URL
+    app.delete("/users/:id", (req, res, next) => {
+        People.deleteOne({ _id: req.params.id }).then(result => {
+            console.log(result);
+            res.status(200).json("User Deleted!");
+        });
+    });
 
    //to use this middleware in other parts of the application
     

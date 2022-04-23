@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';

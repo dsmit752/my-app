@@ -1,3 +1,4 @@
+<!--
 <mat-toolbar color="primary"> 
     <mat-toolbar-row>
       <span>
@@ -43,101 +44,56 @@
 
     </mat-toolbar-row>
   </mat-toolbar>
-  <hr>
-<!--<app-footer></app-footer>-->
+  <app-footer></app-footer>-->
+
+  <mat-toolbar color="primary" class="fixed-header"> 
+    <mat-toolbar-row>
+      <span>
+        <button mat-raised-button routerLink="/home" style="font-size: x-large;">Content Manager 2.0</button>
+      </span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button routerLink="/login" matTooltip="CLICK HERE TO LOGIN!" class="person-icon" aria-label="icon-button with person icon">
+        <mat-icon>person</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Home" routerLink="/home" class="home-icon" aria-label="icon-button with home icon">
+        <mat-icon>home</mat-icon>
+      </button>
+      <button mat-icon-button (click)="onOpenDialog()" matTooltip="Notifications" class="notifications-icon" aria-label="icon-button with notifications icon">
+        <mat-icon>notifications</mat-icon>
+      </button>
+      <button mat-icon-button (click)="onOpenDialog()" matTooltip="App Settings" class="settings-icon" aria-label="icon-button with settings icon">
+        <mat-icon>settings</mat-icon>
+      </button>
+      <button mat-icon-button (click)="onOpenDialog()" matTooltip="Help" class="help_outline-icon" aria-label="icon-button with help_outline icon">
+        <mat-icon>help_outline</mat-icon>
+      </button>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row>
+      <span class="example-spacer"></span>
+      <button mat-icon-button matToolTip="Menu" [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="assets">Asset Management</button>
+          <button mat-menu-item [matMenuTriggerFor]="users">User Management</button>
+        </mat-menu>
+
+        <mat-menu #assets="matMenu">
+          <button mat-menu-item routerLink="/listassets">View Assets</button>
+          <button mat-menu-item routerLink="/assets">Add Asset</button>
+        </mat-menu>
+
+        <mat-menu #users="matMenu">
+          <button mat-menu-item routerLink="/list-users">View Users</button>
+          <button mat-menu-item routerLink="/create-user">Add User</button>
+        </mat-menu>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <app-footer></app-footer>
+
 <router-outlet></router-outlet>
-<app-footer></app-footer>
 
 
-<!--
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
--- NAVBAR STARTS HERE --
-<header>
-
-  <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #1e5d88;">
-
-      <-- APPLICATION LOGO --
-
-      <div class="container-fluid">
-          <a class="navbar-brand" href="#" style="color: white;">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="33" height="33" fill="#55ad7a">
-                  <path d="M0 13C0 6.373 5.373 1 12 1s12 5.373 12 12v8.657a.75.75 0 01-1.5 0V13c0-5.799-4.701-10.5-10.5-10.5S1.5 7.201 1.5 13v8.657a.75.75 0 01-1.5 0V13z"></path>
-                  <path d="M8 19.75a.75.75 0 01.75-.75h6.5a.75.75 0 010 1.5h-6.5a.75.75 0 01-.75-.75z"></path>
-                  <path fill-rule="evenodd" d="M5.25 9.5a1.75 1.75 0 00-1.75 1.75v3.5c0 .966.784 1.75 1.75 1.75h13.5a1.75 1.75 0 001.75-1.75v-3.5a1.75 1.75 0 00-1.75-1.75H5.25zm.22 1.47a.75.75 0 011.06 0L9 13.44l2.47-2.47a.75.75 0 011.06 0L15 13.44l2.47-2.47a.75.75 0 111.06 1.06l-3 3a.75.75 0 01-1.06 0L12 12.56l-2.47 2.47a.75.75 0 01-1.06 0l-3-3a.75.75 0 010-1.06z"></path>
-              </svg>
-          Content Manager 2.0
-          </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <-- DROPDOWN --
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" style="color: white;" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Modules
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" routerLink="/listassets">Asset Management</a></li>
-                    <li><a class="dropdown-item" href="#">User Management</a></li>
-                  </ul>
-              </li>
-
-              <-- NOTIFICATION LINK --
-
-              <li class="nav-item">
-                  <a class="nav-link" href="#" data-bs-toggle="tooltip" title="Notifications">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-bell" viewBox="0 0 16 16">
-                          <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
-                      </svg>
-                  </a>
-              </li>
-
-              <-- SETTINGS LINK --
-
-              <li class="nav-item">
-                  <a class="nav-link" href="#" data-bs-toggle="tooltip" title="Settings">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-gear" viewBox="0 0 16 16">
-                          <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
-                          <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
-                      </svg>
-                  </a>
-              </li>
-
-              <-- HELP LINK --
-
-              <li class="nav-item">
-                  <a class="nav-link" href="#" data-bs-toggle="tooltip" title="Help">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-question-circle" viewBox="0 0 16 16">
-                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                          <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
-                      </svg>
-                  </a>
-              </li>
-
-              <-- USER PROFILE LINK --
-
-              <li class="nav-item">
-                  <a class="nav-link" href="#" data-bs-toggle="tooltip" title="User Profile">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-person-badge" viewBox="0 0 16 16">
-                          <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                          <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
-                      </svg>
-                  </a>
-              </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-</header>
-<-- END OF NAVVAR
-<app-navbar></app-navbar>--
-
-<app-footer></app-footer>
-<router-outlet></router-outlet>
--->

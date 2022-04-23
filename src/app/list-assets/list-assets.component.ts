@@ -3,7 +3,7 @@ import { AssetService } from '../asset.service';
 import { NewAssetsComponent } from '../new-assets/new-assets.component';
 import { MatButton } from '@angular/material/button';
 import { MatButtonModule } from '@angular/material/button';
-
+import {RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-list-assets',
@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class ListAssetsComponent implements OnInit {
 
 //declare variable to hold response and make it public to be accessible from components.html 
-  public item: any;
+  public items: any;
   
   //initialize the call using AssetService 
   constructor(private _myService: AssetService) { }
@@ -22,10 +22,10 @@ export class ListAssetsComponent implements OnInit {
   }
   //method called OnInit
   getItems() {
-      console.log(this.item)
+      //console.log(this.item)
       this._myService.getItems().subscribe(
          //read data and assign to public variable assets
-        data => { this.item = data},
+        data => { this.items = data},
          
           err => console.error(err),
           () => console.log('finished loading')

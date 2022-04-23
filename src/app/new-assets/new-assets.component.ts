@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AssetService } from '../asset.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 
 
@@ -26,11 +28,11 @@ export class NewAssetsComponent implements OnInit {
   private asset: any;
 
   constructor(private _myService: AssetService, 
-  private router: Router, 
+  private router: Router,
   public route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+    this.route.paramMap.subscribe((paramMap: ParamMap ) => {
       if (paramMap.has('_id')) {
         this.mode = 'Edit'; /*request had a parameter _id*/
         this.id = paramMap.get('_id');
@@ -60,7 +62,6 @@ export class NewAssetsComponent implements OnInit {
     });
 
   }
-
 
   onSubmit() {
     console.log("You submitted: " + this.itemName + " " + this.itemModel + " " + this.itemDes + " " + this.itemSerial
