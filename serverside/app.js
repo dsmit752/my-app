@@ -55,7 +55,13 @@ app.get('/assets', (req, res, next) => {
         console.log('Error: ${err}');
         res.status(500).json(err);
     });
-
+  
+  //Home Route
+  app.get("/", function(req, res) {
+    
+    res.send("home");
+  };
+    
     //find a asset based on the id
 app.get('/assets/:_id', (req, res, next) => {
     //call mongoose method findOne (MongoDB db.Assets.findOne())
